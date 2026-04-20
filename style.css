@@ -33,16 +33,16 @@ h1 {
 }
 
 button {
-  padding: 18px;
+  padding: 15px;
+  margin: 10px;
   font-size: 18px;
   border-radius: 40px;
   border: none;
   background: white;
   color: black;
   cursor: pointer;
-  transition: transform 0.2s;
 }
 
-button:active {
-  transform: scale(0.95);
+#holdBtn {
+  display: none;
 }
