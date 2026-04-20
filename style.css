@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  background: radial-gradient(circle, #111, #000);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+h1 {
+  font-size: 2.2em;
+}
+
+.subtitle {
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+.hint {
+  margin: 20px 0;
+  opacity: 0.5;
+}
+
+button {
+  padding: 18px;
+  font-size: 18px;
+  border-radius: 40px;
+  border: none;
+  background: white;
+  color: black;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Karen & Rodrigo 👶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="screen1" class="screen">
+  <h1 id="title"></h1>
+  <p class="subtitle">Karen & Rodrigo têm uma surpresa...</p>
+  <p class="hint">Pressione e segure</p>
+  <button id="holdBtn">Descobrir</button>
+</div>
+
+<div id="screen2" class="screen hidden">
+  <h1 id="result"></h1>
+  <p class="subtitle">Obrigado por fazer parte desse momento 💖</p>
+  <button onclick="share()">Compartilhar</button>
+</div>
+
+<audio id="boom" src="assets/boom.mp3"></audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
