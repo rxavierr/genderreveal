@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-// 🔑 COLE SUA CONFIG AQUI
+// 🔑 CONFIG FIREBASE
 const firebaseConfig = {
   apiKey: "SUA_API_KEY",
   authDomain: "SEU_PROJECT.firebaseapp.com",
@@ -11,15 +11,31 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Nome do convidado
 const params = new URLSearchParams(window.location.search);
 const guest = params.get("guest") || "Convidado";
 
 let votoUsuario = null;
 
+const btnGuri = document.getElementById("btnGuri");
+const btnGuria = document.getElementById("btnGuria");
+
 // 🗳️ VOTO
 window.votar = async function(escolha) {
   votoUsuario = escolha;
+
+  // 🎯 feedback visual
+  if (escolha === "guri") {
+    btnGuri.classList.add("selected");
+    btnGuria.classList.add("dimmed");
+  } else {
+    btnGuria.classList.add("selected");
+    btnGuri.classList.add("dimmed");
+  }
+
+  // 📳 vibração
+  if (navigator.vibrate) {
+    navigator.vibrate(50);
+  }
 
   document.getElementById("revealBtn").style.display = "block";
 
@@ -30,27 +46,23 @@ window.votar = async function(escolha) {
       data: new Date()
     });
   } catch (e) {
-    console.error("Erro Firebase:", e);
+    console.error(e);
   }
 };
 
-// CLICK REVEAL
+// 🎬 REVEAL CLICK
 document.getElementById("revealBtn").addEventListener("click", () => {
   if (!votoUsuario) {
-    alert("Escolha uma opção primeiro 👀");
+    alert("Escolha Guri ou Guria primeiro 👀");
     return;
   }
 
   suspenseThenReveal();
 });
 
-// 🎬 SUSPENSE
+// 🎯 SUSPENSE
 function suspenseThenReveal() {
   document.body.style.background = "black";
-
-  if (navigator.vibrate) {
-    navigator.vibrate([100, 50, 100]);
-  }
 
   setTimeout(reveal, 1200);
 }

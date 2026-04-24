@@ -11,12 +11,13 @@
 <div class="app">
   <div class="card">
 
-    <div class="image-wrapper">
-      <img src="assets/familia.jpg" class="foto">
+    <!-- IMAGEM COM DESIGN COMPLETO -->
+    <img src="assets/familia.jpg" class="foto" alt="Família Dorneles Xavier">
 
-      <!-- BOTÕES SOBREPOSTOS -->
-      <button onclick="votar('guri')" class="btn-overlay guri">👦</button>
-      <button onclick="votar('guria')" class="btn-overlay guria">👧</button>
+    <!-- BOTÕES INTERATIVOS -->
+    <div class="botoes">
+      <button onclick="votar('guri')" id="btnGuri" class="guri">Guri</button>
+      <button onclick="votar('guria')" id="btnGuria" class="guria">Guria</button>
     </div>
 
     <!-- REVEAL -->
