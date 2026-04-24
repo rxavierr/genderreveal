@@ -28,5 +28,8 @@ document.getElementById("revealBtn").addEventListener("click", () => {
     <h1>${sexo === "menina" ? "💖 É UMA GURIA!" : "💙 É UM GURI!"}</h1>
   `;
 
-  confetti();
+  confetti({
+    particleCount: 250,
+    spread: 120
+  });
 });
