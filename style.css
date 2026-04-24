@@ -15,7 +15,7 @@ body {
   max-width: 380px;
   background: linear-gradient(to bottom, #f8f4ef, #efe7df);
   border-radius: 30px;
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
@@ -23,43 +23,40 @@ body {
 /* IMAGEM */
 .foto {
   width: 100%;
-  border-radius: 20px;
-  margin-bottom: 10px;
+  border-radius: 25px;
 }
 
 /* BOTÕES */
 .botoes {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 8px; /* 👈 ajuste fino para alinhar com os ícones */
 }
 
 button {
   width: 48%;
   padding: 14px;
-  border-radius: 20px;
+  border-radius: 18px;
   border: none;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.2s;
 }
 
-/* ESTILO BASE */
+/* CORES CASANDO COM A ARTE */
 .guri {
-  background: #9aa7a1;
+  background: #8f9c95;
   color: white;
 }
 
 .guria {
-  background: #d6b29b;
+  background: #d2a07a;
   color: white;
 }
 
-/* SELECIONADO */
+/* SELEÇÃO */
 .selected {
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  opacity: 1;
 }
 
 .dimmed {
@@ -70,7 +67,7 @@ button {
 #revealBtn {
   display: none;
   width: 100%;
-  margin-top: 15px;
-  background: #333;
+  margin-top: 10px;
+  background: linear-gradient(to right, #5b3a27, #3b2519);
   color: white;
 }
