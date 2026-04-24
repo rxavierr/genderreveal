@@ -1,63 +1,41 @@
-// 🔥 Firebase imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
 // 🔑 COLE SUA CONFIG AQUI
 const firebaseConfig = {
-  apiKey: "AIzaSyBDOPPqnCCdkdS6iz4LDFHY0CpnfXPyU_0",
-  authDomain: "gender-reveal-5671e.firebaseapp.com",
-  projectId: "gender-reveal-5671e"
+  apiKey: "SUA_API_KEY",
+  authDomain: "SEU_PROJECT.firebaseapp.com",
+  projectId: "SEU_PROJECT_ID"
 };
 
-// 🚀 Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 👤 Nome do convidado via URL
+// 👤 Nome via URL
 const params = new URLSearchParams(window.location.search);
 const guest = params.get("guest") || "Você";
 
-document.getElementById("title").innerText =
-  `${guest}, você foi escolhido para descobrir primeiro 👀`;
-
 let votoUsuario = null;
 
-// 🗳️ Função de voto
+// 🗳️ Voto
 window.votar = async function(escolha) {
   votoUsuario = escolha;
 
   document.getElementById("choice").style.display = "none";
-  document.getElementById("holdBtn").style.display = "block";
+  document.getElementById("revealBtn").style.display = "block";
 
   await addDoc(collection(db, "votos"), {
-    escolha: escolha,
+    escolha,
     convidado: guest,
     data: new Date()
   });
 };
 
-// 🎯 Botão hold
-const btn = document.getElementById("holdBtn");
-let pressTimer;
+// 🎬 Reveal (CLICK — compatível iPhone)
+document.getElementById("revealBtn").addEventListener("click", () => {
+  suspenseThenReveal();
+});
 
-btn.addEventListener("mousedown", startHold);
-btn.addEventListener("touchstart", startHold);
-
-btn.addEventListener("mouseup", cancelHold);
-btn.addEventListener("mouseleave", cancelHold);
-btn.addEventListener("touchend", cancelHold);
-
-function startHold() {
-  pressTimer = setTimeout(() => {
-    suspenseThenReveal();
-  }, 1800);
-}
-
-function cancelHold() {
-  clearTimeout(pressTimer);
-}
-
-// 🎬 Suspense
 function suspenseThenReveal() {
   document.body.style.background = "black";
 
@@ -65,27 +43,27 @@ function suspenseThenReveal() {
     navigator.vibrate([100, 50, 100]);
   }
 
-  setTimeout(reveal, 1200);
+  setTimeout(reveal, 1500);
 }
 
-// 💥 Reveal
+// 💥 REVEAL FINAL
 function reveal() {
   document.getElementById("screen1").classList.add("hidden");
   document.getElementById("screen2").classList.remove("hidden");
 
-  const sexo = "menino"; // 🔥 ALTERE AQUI
+  const sexo = "menina"; // 👶 DEFINIDO
 
   const result = document.getElementById("result");
   const resultadoFinal = document.getElementById("resultadoFinal");
 
   document.getElementById("boom").play();
 
-  if (sexo === "menino") {
-    document.body.style.background = "#2196F3";
-    result.innerText = "É MENINO 💙";
+  if (sexo === "menina") {
+    document.body.style.background = "#d7b49e";
+    result.innerText = "É UMA GURIA 💖";
   } else {
-    document.body.style.background = "#E91E63";
-    result.innerText = "É MENINA 💖";
+    document.body.style.background = "#90a4ae";
+    result.innerText = "É UM GURI 💙";
   }
 
   confetti({
@@ -94,11 +72,10 @@ function reveal() {
     origin: { y: 0.6 }
   });
 
-  // 🎯 Verifica acerto
   let acertou = false;
 
-  if (sexo === "menino" && votoUsuario === "guri") acertou = true;
   if (sexo === "menina" && votoUsuario === "guria") acertou = true;
+  if (sexo === "menino" && votoUsuario === "guri") acertou = true;
 
   resultadoFinal.innerText = acertou
     ? "🎉 Você acertou!"
@@ -108,7 +85,7 @@ function reveal() {
 // 📲 Compartilhar
 window.share = function() {
   const url = window.location.href;
-  const text = "Karen & Rodrigo têm uma surpresa 👶✨ Descubra:";
+  const text = "Descubra o bebê da família Dorneles Xavier 👶✨";
 
   window.open(`https://wa.me/?text=${encodeURIComponent(text + " " + url)}`);
 };
