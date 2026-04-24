@@ -3,47 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Reveal 👶</title>
-
-  <!-- MOBILE ESSENCIAL -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
 <div class="app">
-
   <div class="card">
 
-    <!-- FOTO -->
-    <img src="assets/familia.jpg" class="foto" alt="Família Dorneles Xavier">
+    <div class="image-wrapper">
+      <img src="assets/familia.jpg" class="foto">
 
-    <!-- TEXTO -->
-    <h2>
-      A Família <b>Dorneles Xavier</b><br>
-      está crescendo e <br>
-      <span>Você</span> está convidado a tentar adivinhar se quem está chegando é um:
-    </h2>
-
-    <!-- BOTÕES -->
-    <div class="botoes">
-      <button class="guri" onclick="votar('guri')">👦 Guri</button>
-      <button class="guria" onclick="votar('guria')">👧 Guria</button>
+      <!-- BOTÕES SOBREPOSTOS -->
+      <button onclick="votar('guri')" class="btn-overlay guri">👦</button>
+      <button onclick="votar('guria')" class="btn-overlay guria">👧</button>
     </div>
 
-    <!-- BOTÃO REVEAL -->
+    <!-- REVEAL -->
     <button id="revealBtn">Descobrir</button>
 
   </div>
-
 </div>
 
-<!-- CONFETTI -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-<!-- SCRIPT PRINCIPAL -->
 <script type="module" src="script.js"></script>
 
 </body>

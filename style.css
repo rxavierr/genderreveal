@@ -4,14 +4,12 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* CENTRALIZA COMO APP */
 .app {
   display: flex;
   justify-content: center;
   padding: 20px;
 }
 
-/* CARD PRINCIPAL */
 .card {
   width: 100%;
   max-width: 380px;
@@ -22,64 +20,63 @@ body {
   box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
-/* FOTO */
+/* IMAGEM */
+.image-wrapper {
+  position: relative;
+}
+
 .foto {
   width: 100%;
+  display: block;
   border-radius: 20px;
-  margin-bottom: 20px;
 }
 
-/* TEXTO */
-h2 {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-h2 span {
-  color: #c49a6c;
-  font-weight: bold;
-}
-
-/* BOTÕES */
-.botoes {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-}
-
-button {
+/* BOTÕES SOBREPOSTOS */
+.btn-overlay {
+  position: absolute;
+  width: 28%;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
   border: none;
-  padding: 14px;
-  border-radius: 20px;
-  font-size: 16px;
+  font-size: 26px;
   cursor: pointer;
-  width: 48%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* POSIÇÃO AJUSTADA */
 .guri {
-  background: #9aa7a1;
+  left: 12%;
+  bottom: 6%;
+  background: rgba(140, 150, 145, 0.9);
   color: white;
 }
 
 .guria {
-  background: #d6b29b;
+  right: 12%;
+  bottom: 6%;
+  background: rgba(215, 180, 158, 0.9);
   color: white;
 }
 
+/* BOTÃO REVEAL */
 #revealBtn {
   display: none;
   width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: 20px;
+  border: none;
   background: #333;
   color: white;
+  font-size: 16px;
 }
 
 /* MOBILE */
 @media (max-width: 400px) {
   .card {
     padding: 15px;
-  }
-
-  h2 {
-    font-size: 0.9rem;
   }
 }
