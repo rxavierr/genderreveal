@@ -1,41 +1,55 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-// 🔑 COLE SUA CONFIG AQUI
+// 🔑 COLE SUA CONFIG DO FIREBASE AQUI
 const firebaseConfig = {
   apiKey: "SUA_API_KEY",
   authDomain: "SEU_PROJECT.firebaseapp.com",
   projectId: "SEU_PROJECT_ID"
 };
 
+// 🚀 Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 👤 Nome via URL
+// 👤 Nome do convidado via URL
 const params = new URLSearchParams(window.location.search);
-const guest = params.get("guest") || "Você";
+const guest = params.get("guest") || "Convidado";
 
+// 🧠 Estado do usuário
 let votoUsuario = null;
 
-// 🗳️ Voto
-window.votar = async function(escolha) {
+// 🗳️ FUNÇÃO DE VOTO
+window.votar = async function (escolha) {
   votoUsuario = escolha;
 
-  document.getElementById("choice").style.display = "none";
+  // Mostra botão de reveal
   document.getElementById("revealBtn").style.display = "block";
 
-  await addDoc(collection(db, "votos"), {
-    escolha,
-    convidado: guest,
-    data: new Date()
-  });
+  try {
+    await addDoc(collection(db, "votos"), {
+      escolha: escolha,
+      convidado: guest,
+      data: new Date()
+    });
+
+    console.log("Voto registrado:", escolha);
+  } catch (e) {
+    console.error("Erro ao salvar voto:", e);
+  }
 };
 
-// 🎬 Reveal (CLICK — compatível iPhone)
+// 🎬 CLICK DO BOTÃO (compatível iPhone)
 document.getElementById("revealBtn").addEventListener("click", () => {
+  if (!votoUsuario) {
+    alert("Escolha Guri ou Guria primeiro 👀");
+    return;
+  }
+
   suspenseThenReveal();
 });
 
+// 🎯 SUSPENSE
 function suspenseThenReveal() {
   document.body.style.background = "black";
 
@@ -48,42 +62,53 @@ function suspenseThenReveal() {
 
 // 💥 REVEAL FINAL
 function reveal() {
-  document.getElementById("screen1").classList.add("hidden");
-  document.getElementById("screen2").classList.remove("hidden");
-
   const sexo = "menina"; // 👶 DEFINIDO
 
-  const result = document.getElementById("result");
-  const resultadoFinal = document.getElementById("resultadoFinal");
+  const card = document.querySelector(".card");
 
-  document.getElementById("boom").play();
-
+  // 🎨 Troca cor do fundo
   if (sexo === "menina") {
     document.body.style.background = "#d7b49e";
-    result.innerText = "É UMA GURIA 💖";
+    card.innerHTML = `
+      <h1>💖 É UMA GURIA! 💖</h1>
+      <p>${resultadoUsuario(sexo)}</p>
+      <button onclick="share()">Compartilhar</button>
+    `;
   } else {
     document.body.style.background = "#90a4ae";
-    result.innerText = "É UM GURI 💙";
+    card.innerHTML = `
+      <h1>💙 É UM GURI! 💙</h1>
+      <p>${resultadoUsuario(sexo)}</p>
+      <button onclick="share()">Compartilhar</button>
+    `;
   }
 
+  // 🎉 Confetti
   confetti({
-    particleCount: 350,
-    spread: 140,
+    particleCount: 300,
+    spread: 120,
     origin: { y: 0.6 }
   });
 
+  // 🔊 Som
+  const audio = new Audio("assets/boom.mp3");
+  audio.play();
+}
+
+// 🧠 RESULTADO DO USUÁRIO
+function resultadoUsuario(sexo) {
   let acertou = false;
 
   if (sexo === "menina" && votoUsuario === "guria") acertou = true;
   if (sexo === "menino" && votoUsuario === "guri") acertou = true;
 
-  resultadoFinal.innerText = acertou
+  return acertou
     ? "🎉 Você acertou!"
     : "😅 Quase! Mas o importante é comemorar!";
 }
 
-// 📲 Compartilhar
-window.share = function() {
+// 📲 COMPARTILHAR
+window.share = function () {
   const url = window.location.href;
   const text = "Descubra o bebê da família Dorneles Xavier 👶✨";
 

@@ -2,41 +2,48 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Karen & Rodrigo 👶</title>
+  <title>Reveal 👶</title>
+
+  <!-- MOBILE ESSENCIAL -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
-<div id="screen1" class="screen">
+<div class="app">
 
-  <div class="heart-container">
-    <img src="assets/familia.jpg" class="foto-familia"/>
+  <div class="card">
+
+    <!-- FOTO -->
+    <img src="assets/familia.jpg" class="foto" alt="Família Dorneles Xavier">
+
+    <!-- TEXTO -->
+    <h2>
+      A Família <b>Dorneles Xavier</b><br>
+      está crescendo e <br>
+      <span>Você</span> está convidado a tentar adivinhar se quem está chegando é um:
+    </h2>
+
+    <!-- BOTÕES -->
+    <div class="botoes">
+      <button class="guri" onclick="votar('guri')">👦 Guri</button>
+      <button class="guria" onclick="votar('guria')">👧 Guria</button>
+    </div>
+
+    <!-- BOTÃO REVEAL -->
+    <button id="revealBtn">Descobrir</button>
+
   </div>
-
-  <h2 class="texto-principal">
-    A Família <b>Dorneles Xavier</b> está crescendo e <br>
-    <span class="destaque">Você</span> está convidado a tentar adivinhar se quem está chegando é um:
-  </h2>
-
-  <div id="choice">
-    <button class="btn-guri" onclick="votar('guri')">👦 Guri</button>
-    <button class="btn-guria" onclick="votar('guria')">👧 Guria</button>
-  </div>
-
-  <button id="revealBtn">Descobrir</button>
 
 </div>
 
-<div id="screen2" class="screen hidden">
-  <h1 id="result"></h1>
-  <p id="resultadoFinal"></p>
-  <button onclick="share()">Compartilhar</button>
-</div>
-
-<audio id="boom" src="assets/boom.mp3"></audio>
-
+<!-- CONFETTI -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<!-- SCRIPT PRINCIPAL -->
 <script type="module" src="script.js"></script>
 
 </body>

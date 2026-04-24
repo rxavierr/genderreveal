@@ -1,105 +1,85 @@
 body {
   margin: 0;
-  background: #eaeaea;
+  background: #e5e5e5;
   font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
 }
 
-/* CONTAINER PRINCIPAL (simula app mobile) */
-.screen {
-  width: 100%;
-  max-width: 420px;
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #f5f5f5, #eaeaea);
+/* CENTRALIZA COMO APP */
+.app {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   padding: 20px;
-  box-sizing: border-box;
+}
+
+/* CARD PRINCIPAL */
+.card {
+  width: 100%;
+  max-width: 380px;
+  background: linear-gradient(to bottom, #f8f4ef, #efe7df);
+  border-radius: 30px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
 /* FOTO */
-.heart-container {
-  width: 80%;
-  aspect-ratio: 1 / 1;
-  margin-bottom: 20px;
-}
-
-.foto-familia {
+.foto {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
 
 /* TEXTO */
-.texto-principal {
+h2 {
   font-size: 1rem;
   line-height: 1.5;
-  text-align: center;
-  margin-bottom: 20px;
 }
 
-.destaque {
+h2 span {
   color: #c49a6c;
   font-weight: bold;
 }
 
 /* BOTÕES */
-#choice {
+.botoes {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  margin: 20px 0;
 }
 
 button {
-  padding: 14px 18px;
-  font-size: 16px;
-  border-radius: 30px;
   border: none;
+  padding: 14px;
+  border-radius: 20px;
+  font-size: 16px;
   cursor: pointer;
+  width: 48%;
 }
 
-.btn-guri {
-  background: #90a4ae;
+.guri {
+  background: #9aa7a1;
   color: white;
 }
 
-.btn-guria {
-  background: #d7b49e;
+.guria {
+  background: #d6b29b;
   color: white;
 }
 
 #revealBtn {
   display: none;
+  width: 100%;
   background: #333;
   color: white;
 }
 
-/* TELA FINAL */
-#screen2 {
-  text-align: center;
-}
-
-#result {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-#resultadoFinal {
-  font-size: 1.2em;
-}
-
-/* MOBILE FINO */
+/* MOBILE */
 @media (max-width: 400px) {
-  .texto-principal {
-    font-size: 0.9rem;
+  .card {
+    padding: 15px;
   }
 
-  button {
-    font-size: 14px;
-    padding: 12px;
+  h2 {
+    font-size: 0.9rem;
   }
 }
